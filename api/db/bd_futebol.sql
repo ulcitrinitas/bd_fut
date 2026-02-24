@@ -14,3 +14,11 @@ VALUES ("Goleiro"),
 ("Lateral-esquerdo"),
 ("Lateral-direito");
 
+CREATE TABLE jogador(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(255),
+    posicao INT,
+    created_at DATETIME DEFAULT now(),
+    FOREIGN KEY (posicao) REFERENCES posicoes(id)
+);
+
