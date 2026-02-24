@@ -212,13 +212,31 @@ $mensagem = $_GET['msg'] ?? '';
             font-size: 0.78rem;
             letter-spacing: 1px;
         }
+
+        nav { display: flex; gap: 6px; }
+        .nav-link {
+            padding: 8px 18px;
+            border-radius: 4px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-decoration: none;
+            color: var(--texto-suave);
+            border: 1px solid transparent;
+            transition: all 0.2s;
+        }
+        .nav-link:hover { color: var(--branco); border-color: var(--cinza-borda); }
+        .nav-ativo { color: var(--verde) !important; border-color: var(--verde) !important; }
     </style>
 </head>
 <body>
 
 <header>
     <h1>⚽ Futebol DB</h1>
-    <span>SISTEMA DE GESTÃO DE POSIÇÕES</span>
+    <nav>
+        <a href="index.php" class="nav-link nav-ativo">Posições</a>
+        <a href="jogadores.php" class="nav-link">Jogadores</a>
+    </nav>
 </header>
 
 <div class="container">
@@ -245,6 +263,7 @@ $mensagem = $_GET['msg'] ?? '';
             <tr>
                 <th>#</th>
                 <th>Posição</th>
+                <th>Cadastrado em</th>
                 <th>Ações</th>
             </tr>
         </thead>
@@ -253,6 +272,7 @@ $mensagem = $_GET['msg'] ?? '';
             <tr>
                 <td class="td-id"><?= $p['id'] ?></td>
                 <td><?= htmlspecialchars($p['posicao']) ?></td>
+                <td class="td-data"><?= date('d/m/Y H:i', strtotime($p['created_at'])) ?></td>
                 <td class="td-acoes">
                     <a href="editar.php?id=<?= $p['id'] ?>" class="btn btn-editar">Editar</a>
                     <a href="excluir.php?id=<?= $p['id'] ?>" class="btn btn-perigo"
